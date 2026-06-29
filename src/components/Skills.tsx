@@ -1,0 +1,142 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+    BrainCircuit,
+    Cloud,
+    Code2,
+    Cpu,
+    Database,
+    Server,
+    Sparkles,
+    TrendingUp,
+    Wrench,
+} from "lucide-react";
+
+const skills = [
+    {
+        category: "Programming Languages",
+        icon: Code2,
+        featured: true,
+        items: ["Python", "Java", "JavaScript", "HTML", "CSS"],
+    },
+    {
+        category: "Machine Learning & AI",
+        icon: BrainCircuit,
+        featured: true,
+        items: ["Deep Learning (LSTM, CNN)", "Scikit-learn", "TensorFlow", "Keras", "Time Series Analysis"],
+    },
+    {
+        category: "Backend Development",
+        icon: Server,
+        items: ["Spring Boot", "Flask", "REST APIs"],
+    },
+    {
+        category: "Frontend Development",
+        icon: Wrench,
+        items: ["React", "HTML", "CSS", "JavaScript"],
+    },
+    {
+        category: "Databases",
+        icon: Database,
+        items: ["MongoDB", "MySQL", "Database Management"],
+    },
+    {
+        category: "Developer Tools & Skills",
+        icon: Cpu,
+        items: ["Data Structures & Algorithms", "OOP", "System Design", "Postman", "VS Code", "GitHub", "IntelliJ IDEA"],
+    },
+] as const;
+
+export default function Skills() {
+    return (
+        <section id="skills" className="relative overflow-hidden py-24 px-4">
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute left-1/3 top-1/4 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.06)_0%,transparent_70%)] blur-3xl" />
+                <div className="absolute right-1/4 bottom-1/4 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.05)_0%,transparent_70%)] blur-3xl" />
+            </div>
+
+            <div className="relative max-w-6xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-center mb-14"
+                >
+                    <div className="inline-flex items-center gap-2 rounded-full border border-glass-border bg-glass-bg px-4 py-2 text-xs uppercase tracking-[0.26em] text-text-tertiary backdrop-blur-md">
+                        <Sparkles className="h-4 w-4 text-secondary" />
+                        Technical Arsenal
+                    </div>
+                    <h2 className="mt-5 text-3xl md:text-4xl font-bold text-text-primary">Technical Skills & Expertise</h2>
+                    <p className="mt-4 mx-auto max-w-2xl text-text-tertiary">
+                        My core competencies in programming, machine learning, and full-stack development, with a focus on practical application and problem-solving.
+                    </p>
+                </motion.div>
+
+                <div className="grid gap-6 lg:grid-cols-12">
+                    {skills.map((skillGroup, index) => {
+                        const Icon = skillGroup.icon;
+                        const featured = "featured" in skillGroup;
+                        const spanClass = featured ? "lg:col-span-6" : "lg:col-span-4";
+
+                        return (
+                            <motion.article
+                                key={skillGroup.category}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.22 }}
+                                transition={{ duration: 0.5, delay: index * 0.06 }}
+                                whileHover={{ y: -5, scale: 1.01 }}
+                                className={`${spanClass} relative overflow-hidden rounded-[1.75rem] border border-glass-border bg-glass-bg p-6 shadow-2xl backdrop-blur-md transition-colors hover:border-primary/40`}
+                            >
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent_55%)] opacity-80" />
+                                <div className="relative flex items-start gap-4">
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-glass-border bg-primary/10 shadow-inner">
+                                        <Icon className="h-6 w-6 text-primary" />
+                                    </div>
+
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <h3 className="text-xl font-semibold text-text-primary">{skillGroup.category}</h3>
+                                            {featured ? (
+                                                <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
+                                                    Core focus
+                                                </span>
+                                            ) : null}
+                                        </div>
+
+                                        <p className="mt-2 text-sm leading-relaxed text-text-tertiary">
+                                            {skillGroup.category === "Programming Languages"
+                                                ? "Core programming languages with strong proficiency in Python for AI/ML development and Java for backend systems."
+                                                : skillGroup.category === "Machine Learning & AI"
+                                                    ? "Deep learning frameworks and machine learning libraries for building predictive models and neural networks."
+                                                    : skillGroup.category === "Backend Development"
+                                                        ? "Server-side frameworks and API development for building robust backend systems."
+                                                        : skillGroup.category === "Frontend Development"
+                                                            ? "Modern frontend technologies for creating responsive and interactive user interfaces."
+                                                            : skillGroup.category === "Databases"
+                                                                ? "Database management systems for efficient data storage and retrieval."
+                                                                : "Essential development tools and computer science fundamentals for efficient software development."}
+                                        </p>
+
+                                        <div className="mt-5 flex flex-wrap gap-2">
+                                            {skillGroup.items.map((item) => (
+                                                <span
+                                                    key={item}
+                                                    className="inline-flex items-center rounded-full border border-glass-border bg-glass-bg-subtle px-3 py-1 text-sm text-text-secondary transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:text-primary"
+                                                >
+                                                    {item}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.article>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    );
+}

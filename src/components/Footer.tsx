@@ -7,7 +7,7 @@ const socialLinks = [
     { icon: Github, href: "https://github.com/9046balaji", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/konda-balaji-rao/", label: "LinkedIn" },
     { icon: Code, href: "https://leetcode.com/u/KBalajiRao/", label: "LeetCode" },
-    { icon: Mail, href: "mailto:balajikonda9046@gmail.com", label: "Email" },
+    { icon: Mail, href: "mailto:sanjayjasti18@gmail.com", label: "Email" },
 ];
 
 const quickLinks = [
@@ -74,8 +74,8 @@ export default function Footer() {
                         <ul className="space-y-3 text-sm">
                             <li className="text-text-tertiary">
                                 <span className="text-text-muted">Email:</span>{" "}
-                                <a href="mailto:balajikonda9046@gmail.com" className="hover:text-primary transition-colors">
-                                    balajikonda9046@gmail.com
+                                <a href="mailto:sanjayjasti18@gmail.com" className="hover:text-primary transition-colors">
+                                    sanjayjasti18@gmail.com
                                 </a>
                             </li>
                             <li className="text-text-tertiary">

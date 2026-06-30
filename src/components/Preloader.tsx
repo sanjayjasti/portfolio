@@ -17,15 +17,16 @@ export default function Preloader() {
 
   // Check if this is the initial app load
   useEffect(() => {
-    const hasShownPreloader = sessionStorage.getItem('preloader-shown');
+    // Only show preloader on initial page load (not on navigation)
+    const isInitialLoad = !sessionStorage.getItem('app-visited') && !document.referrer.includes(window.location.hostname);
     
-    if (!hasShownPreloader) {
+    if (isInitialLoad) {
       // First time visiting the app in this session
       setShouldShowPreloader(true);
       setPhase("loading");
-      sessionStorage.setItem('preloader-shown', 'true');
+      sessionStorage.setItem('app-visited', 'true');
     } else {
-      // Already shown preloader in this session, skip it
+      // Already visited in this session or navigated from within the app
       setPhase("done");
     }
   }, []);
